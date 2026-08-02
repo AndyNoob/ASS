@@ -1,5 +1,5 @@
 export function createStyle(dialogue) {
-  const { layer, align, effect, pos, margin, q } = dialogue;
+  const { layer, align, effect, pos, margin, q, move } = dialogue;
   let cssText = '';
   if (layer) cssText += `z-index:${layer};`;
   cssText += `text-align:${['left', 'center', 'right'][align.h]};`;
@@ -7,7 +7,7 @@ export function createStyle(dialogue) {
     if (q !== 2) {
       cssText += `max-width:calc(100% - var(--ass-scale) * ${margin.left + margin.right}px);`;
     }
-    if (!pos) {
+    if (!pos && !move) {
       if (align.h !== 0) {
         cssText += `padding-right:calc(var(--ass-scale) * ${margin.right}px);`;
       }

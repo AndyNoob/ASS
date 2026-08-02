@@ -1583,12 +1583,12 @@ var ASS = (function () {
       }
     } else if (alignment >= 7) {
       result = vertical + 1;
-      for (let i = result; i < stageHeight - vertical; i += 1) {
+      for (let i = result; i < stageHeight; i += 1) {
         if (find(i)) break;
       }
     } else {
       result = (stageHeight - height) >> 1;
-      for (let i = result; i < stageHeight - vertical; i += 1) {
+      for (let i = result; i < stageHeight; i += 1) {
         if (find(i)) break;
       }
     }
@@ -1637,7 +1637,7 @@ var ASS = (function () {
   }
 
   function createStyle(dialogue) {
-    const { layer, align, effect, pos, margin, q } = dialogue;
+    const { layer, align, effect, pos, margin, q, move } = dialogue;
     let cssText = '';
     if (layer) cssText += `z-index:${layer};`;
     cssText += `text-align:${['left', 'center', 'right'][align.h]};`;
@@ -1645,7 +1645,7 @@ var ASS = (function () {
       if (q !== 2) {
         cssText += `max-width:calc(100% - var(--ass-scale) * ${margin.left + margin.right}px);`;
       }
-      if (!pos) {
+      if (!pos && !move) {
         if (align.h !== 0) {
           cssText += `padding-right:calc(var(--ass-scale) * ${margin.right}px);`;
         }
