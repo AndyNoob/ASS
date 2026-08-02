@@ -54,12 +54,12 @@ function allocate(dialogue, store) {
     }
   } else if (alignment >= 7) {
     result = vertical + 1;
-    for (let i = result; i < stageHeight - vertical; i += 1) {
+    for (let i = result; i < stageHeight; i += 1) {
       if (find(i)) break;
     }
   } else {
     result = (stageHeight - height) >> 1;
-    for (let i = result; i < stageHeight - vertical; i += 1) {
+    for (let i = result; i < stageHeight; i += 1) {
       if (find(i)) break;
     }
   }

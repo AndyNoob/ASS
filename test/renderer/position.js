@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { getPosition } from '../../src/renderer/position.js';
 
 /**
@@ -168,6 +168,18 @@ describe('getPosition', () => {
       });
       const { y } = getPosition(dialogue, store);
       expect(y).toBe(29);
+    });
+
+    it('should allocate correctly when MarginV is high & align.v > 0', () => {
+      const store = mockStore({ width: 640, height: 360 });
+      const dialogue = mockDialogue({
+        width: 120,
+        height: 15,
+        margin: { left: 469, right: 11, vertical: 331 },
+        align: { h: 1, v: 2 },
+      });
+      const { y } = getPosition(dialogue, store);
+      expect(y).toBe(332);
     });
   });
 
